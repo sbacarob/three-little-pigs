@@ -15,7 +15,10 @@ config :three_little_pigs, ThreeLittlePigsWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "rXzwWoh0MXHY+SLaraObP+6wGTlvYjgCjWLUwzLJAec89d5MBhsHt0HSfqhyDJoo",
   render_errors: [view: ThreeLittlePigsWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: ThreeLittlePigs.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: ThreeLittlePigs.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: "GhKIJHwIGKfuEwEqzjiEmu4jg6/Jox/A"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
