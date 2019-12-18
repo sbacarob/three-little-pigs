@@ -5,7 +5,7 @@ defmodule ThreeLittlePigs.Repo.Migrations.AddCardsTable do
     create table(:cards) do
       add :content, :string
       add :author, :string
-      add :type, references(:types)
+      add :type_id, references(:types)
 
       timestamps()
     end

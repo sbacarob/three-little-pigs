@@ -4,6 +4,7 @@ defmodule ThreeLittlePigs.Card do
   """
 
   use Ecto.Schema
+  import Ecto.Changeset
 
   schema "cards" do
     field :content, :string
@@ -12,5 +13,11 @@ defmodule ThreeLittlePigs.Card do
     timestamps()
 
     belongs_to :type, ThreeLittlePigs.Type
+  end
+
+  def changeset(card, attrs) do
+    card
+    |> cast(attrs, [:content, :author, :type_id])
+    |> validate_required([:content, :type_id])
   end
 end
