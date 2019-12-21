@@ -4,6 +4,7 @@ defmodule ThreeLittlePigs.Meeting do
   """
 
   use Ecto.Schema
+  import Ecto.Changeset
 
   schema "meetings" do
     field :name, :string
@@ -11,4 +12,16 @@ defmodule ThreeLittlePigs.Meeting do
 
     timestamps()
   end
+
+  def changeset(meeting, attrs) do
+    meeting
+    |> cast(attrs, [:name])
+    |> validate_required([:name])
+    |> add_uuid()
+  end
+
+  defp add_uuid(%{valid?: true} = changeset) do
+    put_change(changeset, :uuid, Ecto.UUID.generate())
+  end
+  defp add_uuid(changeset), do: changeset
 end
