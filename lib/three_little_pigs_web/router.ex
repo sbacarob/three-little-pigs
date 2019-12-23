@@ -18,6 +18,9 @@ defmodule ThreeLittlePigsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    resources "/meetings", MeetingController, only: [:show, :update], param: "uuid"
+    post "/meetings", MeetingController, :create
   end
 
   # Other scopes may use custom stacks.
