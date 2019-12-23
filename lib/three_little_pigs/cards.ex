@@ -39,4 +39,11 @@ defmodule ThreeLittlePigs.Cards do
     |> Card.changeset(attrs)
     |> Repo.update()
   end
+
+  @doc """
+  Get all cards that belong to a meeting
+  """
+  def get_cards_by_meeting(meeting_id) do
+    Repo.get_by!(Card, meeting_id: meeting_id)
+  end
 end
