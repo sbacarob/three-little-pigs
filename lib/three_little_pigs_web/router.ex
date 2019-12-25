@@ -21,6 +21,8 @@ defmodule ThreeLittlePigsWeb.Router do
 
     resources "/meetings", MeetingController, only: [:show, :update], param: "uuid"
     post "/meetings", MeetingController, :create
+
+    resources "/cards", CardController, only: [:create, :update, :delete]
   end
 
   # Other scopes may use custom stacks.
