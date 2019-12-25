@@ -19,7 +19,8 @@ defmodule ThreeLittlePigsWeb.MeetingController do
       {:error, changeset} ->
         conn
         |> put_flash(:error, "Meeting could not be created")
-        |> redirect(to: Routes.page_path(conn, :index, changeset: changeset))
+        |> put_view(ThreeLittlePigsWeb.PageView)
+        |> render(:index, changeset: changeset)
     end
   end
 
