@@ -33,7 +33,7 @@ defmodule ThreeLittlePigs.Cards do
   @doc """
   Edit a card with the given attributes
   """
-  def edit_card(id, attrs) do
+  def update_card(id, attrs) do
     id
     |> get_card()
     |> Card.changeset(attrs)
