@@ -1,0 +1,32 @@
+<!-- store some important values -->
+<% meeting = get_meeting(@meeting_uuid) %>
+<% types = get_types() %>
+<% cards_by_type = get_meeting_cards_by_type(@meeting_uuid) %>
+
+<!-- meeting title -->
+<h1><%= meeting.name %></h1>
+
+<!-- inline form on the top -->
+<input class="card-input" type="text" />
+<%= for type <- types do %>
+  <% material = String.split(type.name, " ") |> Enum.reverse() |> hd() %>
+  <button class='img-btn <%= material %>'><%= material %></button>
+<% end %>
+
+<!-- columns for the different types with all existing tickets for them -->
+<section class="row">
+  <%= for type <- types do %>
+    <article class="column cards-col <%= String.split(type.name, " ") |> Enum.reverse() |> hd() %>">
+      <div class="col-header">
+        <h1><%= type.name %></h1>
+      </div>
+      <div class="col-body">
+        <ul>
+          <%= for card <- Map.get(cards_by_type, type.id, []) do %>
+            <li class="card"><%= card.content %></li>
+          <% end %>
+        </ul>
+      </div>
+    </article>
+  <% end %>
+</section>
