@@ -29,10 +29,6 @@ defmodule ThreeLittlePigsWeb.CardComponent do
     {:noreply, socket}
   end
 
-  def handle_event("toggle-edit-mode", %{"target" => "li"}, %{assigns: %{editing: false}} = socket) do
-    {:noreply, socket}
-  end
-
   def handle_event("toggle-edit-mode", _, %{assigns: %{editing: editing?}} = socket) do
     {
       :noreply,
@@ -68,4 +64,9 @@ defmodule ThreeLittlePigsWeb.CardComponent do
   end
 
   def handle_event("cancel?", _key, socket), do: {:noreply, socket}
+
+  def handle_event("delete-card", _, %{assigns: %{id: card_id}} = socket) do
+    send self(), {"deleted-card", card_id}
+    {:noreply, socket}
+  end
 end

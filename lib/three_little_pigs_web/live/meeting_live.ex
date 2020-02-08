@@ -25,6 +25,11 @@ defmodule ThreeLittlePigsWeb.MeetingLive do
     {:noreply, assign(socket, cards: get_meeting_cards_by_type(uuid))}
   end
 
+  def handle_info({"deleted-card", card_id}, %{assigns: %{meeting_uuid: uuid}} = socket) do
+    Cards.delete_card(card_id)
+    {:noreply, assign(socket, cards: get_meeting_cards_by_type(uuid))}
+  end
+
   def get_meeting_cards_by_type(uuid) do
     uuid
     |> Cards.get_cards_by_meeting()

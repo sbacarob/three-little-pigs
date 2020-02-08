@@ -1,12 +1,11 @@
 <li class="card" phx-click="toggle-edit-mode" phx-value-target="li">
-  <div>
-    <%= if @editing == true && !is_nil(@changeset) do %>
-      <%= f = form_for @changeset, "#", phx_submit: :edit %>
-      <%= text_input f, :content, class: "card-input", phx_keyup: :cancel?, phx_click: "toggle-edit-mode", "phx-value-target": "input"%>
-      <%= error_tag f, :content %>
-      </form>
-    <% else %>
-      <p class="card-content" phx-click="toggle-edit-mode" phx-value-target="input"><%= @card.content %></p>
-    <% end %>
-  </div>
+  <p class="close-icon" phx-click="delete-card">x</p>
+  <%= if @editing == true && !is_nil(@changeset) do %>
+    <%= f = form_for @changeset, "#", phx_submit: :edit %>
+    <%= text_input f, :content, class: "card-input", phx_keyup: :cancel?, phx_click: "toggle-edit-mode", "phx-value-target": "input"%>
+    <%= error_tag f, :content %>
+    </form>
+  <% else %>
+    <p class="card-content" phx-click="toggle-edit-mode" phx-value-target="input"><%= @card.content %></p>
+  <% end %>
 </li>
