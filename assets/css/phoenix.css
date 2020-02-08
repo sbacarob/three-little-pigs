@@ -161,7 +161,8 @@ header nav a {
 
 .col-header h1{
   background-color: #DDCCAA;
-  color: #775533;
+  color: #AD824E;
+  text-align: center;
 }
 
 .col-body{
@@ -172,6 +173,10 @@ header nav a {
   background: white;
   padding: 10px;
   list-style-type: none;
+}
+
+.card-content:hover{
+  border: 2px solid #ccc;
 }
 
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */
