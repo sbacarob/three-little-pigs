@@ -4,6 +4,7 @@ defmodule ThreeLittlePigs.Cards do
   """
 
   alias ThreeLittlePigs.{Card, Repo}
+  import Ecto.Query, only: [from: 2]
 
   @doc """
   Create a card with the given attributes
@@ -43,7 +44,10 @@ defmodule ThreeLittlePigs.Cards do
   @doc """
   Get all cards that belong to a meeting
   """
-  def get_cards_by_meeting(meeting_id) do
-    Repo.get_by!(Card, meeting_id: meeting_id)
+  def get_cards_by_meeting(meeting_uuid) do
+    meeting = ThreeLittlePigs.Meetings.get_meeting_by_uuid(meeting_uuid)
+
+    from(c in Card, where: c.meeting_id == ^meeting.id)
+    |> Repo.all()
   end
 end

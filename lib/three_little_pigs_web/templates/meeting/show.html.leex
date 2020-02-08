@@ -1,0 +1,34 @@
+<!-- store some important values -->
+<% types = get_types() %>
+
+<!-- meeting title -->
+<h1><%= @meeting.name %></h1>
+
+<!-- inline form on the top -->
+<%= f = form_for @changeset, "#", [phx_submit: :save] %>
+  <%= hidden_input f, :author, value: "Santiago" %>
+  <%= hidden_input f, :meeting_id, value: @meeting.id %>
+  <%= label f, :content %>
+  <%= text_input f, :content, class: "card-input" %>
+  <%= error_tag f, :content %>
+  <%= select f, :type_id, Enum.map(types, fn type -> [key: type.name, value: type.id] end) %>
+  <%= submit "Create" %>
+</form>
+
+<!-- columns for the different types with all existing tickets for them -->
+<section class="row">
+  <%= for type <- types do %>
+    <article class="column cards-col <%= String.split(type.name, " ") |> Enum.reverse() |> hd() %>">
+      <div class="col-header">
+        <h1><%= type.name %></h1>
+      </div>
+      <div class="col-body">
+        <ul>
+          <%= for card <- Map.get(@cards, type.id, []) do %>
+            <li class="card"><%= card.content %></li>
+          <% end %>
+        </ul>
+      </div>
+    </article>
+  <% end %>
+</section>

@@ -5,9 +5,9 @@ defmodule ThreeLittlePigsWeb.MeetingController do
   alias ThreeLittlePigs.Meetings
 
   def show(conn, %{"uuid" => uuid}) do
-    Meetings.get_meeting_by_uuid(uuid)
-
-    live_render(conn, ThreeLittlePigsWeb.MeetingLive, session: %{})
+    live_render(conn, ThreeLittlePigsWeb.MeetingLive, session: %{
+      meeting_uuid: uuid
+    })
   end
 
   def create(conn, %{"meeting" => meeting_params}) do
@@ -19,7 +19,8 @@ defmodule ThreeLittlePigsWeb.MeetingController do
       {:error, changeset} ->
         conn
         |> put_flash(:error, "Meeting could not be created")
-        |> redirect(to: Routes.page_path(conn, :index, changeset: changeset))
+        |> put_view(ThreeLittlePigsWeb.PageView)
+        |> render(:index, changeset: changeset)
     end
   end
 
