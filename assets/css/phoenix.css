@@ -175,6 +175,7 @@ header nav a {
   list-style-type: none;
   color: #98644C;
   font-weight: bold;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -224,6 +225,16 @@ select.external-form {
 .btn-submit:hover {
   background-color: white;
   color: #98644C;
+}
+
+.name-square {
+  background-color: #98644C;
+  color: white;
+  padding: 1px 5px;
+  min-width: 30px;
+  text-align: center;
+  border-radius: 4px;
+  float: right;
 }
 
 body {

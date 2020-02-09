@@ -8,4 +8,5 @@
   <% else %>
     <p class="card-content" phx-click="toggle-edit-mode" phx-value-target="input"><%= @card.content %></p>
   <% end %>
+  <div class="name-square"><%= get_author_initials(@card.author) %></div>
 </li>
