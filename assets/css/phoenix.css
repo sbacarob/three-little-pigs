@@ -227,6 +227,11 @@ select.external-form {
   color: #98644C;
 }
 
+.icon-thumbs-up {
+  font-size: 13pt;
+  cursor: pointer;
+}
+
 .name-square {
   background-color: #98644C;
   color: white;
@@ -235,10 +240,21 @@ select.external-form {
   text-align: center;
   border-radius: 4px;
   float: right;
+  margin-top: 13px;
+}
+
+.votes-count {
+  margin: 0;
+  line-height: 10px;
+  font-weight: normal;
+}
+
+.votes-container {
+  display: inline-block;
 }
 
 body {
-  background-color: #D5B9A1 !important;
+  background-color: #D0BDAC !important;
 }
 
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */

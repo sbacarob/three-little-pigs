@@ -1,6 +1,8 @@
 defmodule ThreeLittlePigsWeb.CardComponent do
   use Phoenix.LiveComponent
 
+  alias ThreeLittlePigs.{Card, Cards, CardVotes}
+
   def render(assigns) do
     Phoenix.View.render(ThreeLittlePigsWeb.CardView, "show.html", assigns)
   end
@@ -14,13 +16,14 @@ defmodule ThreeLittlePigsWeb.CardComponent do
     }
   end
 
-  def update(%{card: card, id: id} = _assigns, socket) do
+  def update(%{card: card, id: id, user: user} = _assigns, socket) do
     {
       :ok,
       assign(socket,
       card: card,
       id: id,
-      changeset: ThreeLittlePigs.Card.changeset(card, %{})
+      user: user,
+      changeset: Card.changeset(card, %{})
       )
     }
   end
@@ -39,7 +42,7 @@ defmodule ThreeLittlePigsWeb.CardComponent do
   end
 
   def handle_event("edit", %{"card" => card_params}, %{assigns: %{id: card_id}} = socket) do
-    {:ok, updated} = ThreeLittlePigs.Cards.update_card(card_id, card_params)
+    {:ok, updated} = Cards.update_card(card_id, card_params)
 
     {
       :noreply,
@@ -47,7 +50,7 @@ defmodule ThreeLittlePigsWeb.CardComponent do
         socket,
         editing: false,
         card: updated,
-        changeset: ThreeLittlePigs.Card.changeset(updated, %{})
+        changeset: Card.changeset(updated, %{})
       )
     }
   end
@@ -58,7 +61,7 @@ defmodule ThreeLittlePigsWeb.CardComponent do
       assign(
         socket,
         editing: false,
-        changeset: ThreeLittlePigs.Card.changeset(card, %{})
+        changeset: Card.changeset(card, %{})
       )
     }
   end
@@ -68,5 +71,18 @@ defmodule ThreeLittlePigsWeb.CardComponent do
   def handle_event("delete-card", _, %{assigns: %{id: card_id}} = socket) do
     send self(), {"deleted-card", card_id}
     {:noreply, socket}
+  end
+
+  def handle_event("upvote", _, %{assigns: %{card: card, user: user}} = socket) do
+    case CardVotes.get_card_votes_by_author(card.id, user) do
+      nil ->
+        CardVotes.create_card_vote(%{author: user, card_id: card.id})
+      vote ->
+        CardVotes.delete_card_vote(vote)
+    end
+
+    send self(), "update-order"
+
+    {:noreply, assign(socket, card: Cards.get_card(card.id))}
   end
 end
