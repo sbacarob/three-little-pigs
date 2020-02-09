@@ -120,8 +120,8 @@ header nav a {
   display: block;
 }
 .card-input{
-  display: inline-block;
-  max-width: 60%;
+  margin-top: 15px;
+  border: 1px solid rgb(231, 220, 196) !important;
 }
 
 .img-btn{
@@ -131,20 +131,18 @@ header nav a {
 }
 
 .bricks{
-  background-color: #f99488;
+  background-color: #98644C;
   background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .sticks{
-  background-color: #ad824e;
+  background-color: #AA8855;
   background-image: url("../static/images/tileable-wood-colored.png");
 }
 
 .straw{
-  background: linear-gradient(45deg, #dca 12%, transparent 0, transparent 88%, #dca 0),
-    linear-gradient(135deg, transparent 37%, #a85 0, #a85 63%, transparent 0),
-    linear-gradient(45deg, transparent 37%, #dca 0, #dca 63%, transparent 0) #753;
-    background-size: 25px 25px;
+  background-color: #98644c;
+  background-image: url("../static/images/straws.png");
 }
 
 .row .cards-col{
@@ -153,6 +151,7 @@ header nav a {
   padding: 0;
   margin-left: 2px;
   margin-right: 2px;
+  padding-bottom: 400px;
 }
 
 .col-header{
@@ -160,8 +159,9 @@ header nav a {
 }
 
 .col-header h1{
-  background-color: #DDCCAA;
-  color: #775533;
+  background-color: rgb(231, 220, 196);
+  color: #623e2c;
+  text-align: center;
 }
 
 .col-body{
@@ -169,9 +169,92 @@ header nav a {
 }
 
 .card{
-  background: white;
+  background-color: rgb(231, 220, 196);
   padding: 10px;
+  padding-top: 5px;
   list-style-type: none;
+  color: #98644C;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.card:hover {
+  /* background-color: rgb(228, 207, 161) */
+  background-color: white;
+}
+
+.card-content {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.close-icon {
+  float: right;
+  margin: 0;
+  font-size: 14pt;
+  line-height: 14pt;
+  cursor: pointer;
+  width: max-content;
+}
+
+.meeting-name {
+  color: #623e2c;
+  font-size: 40pt;
+}
+
+.external-form {
+  display: inline-block;
+  max-width: 60%;
+  border: 1px solid #6a5030 !important;
+  color: #623e2c;
+}
+
+.external-form::placeholder {
+  color: #98644C;
+}
+
+select.external-form {
+  font-weight: bold;
+}
+
+.btn-submit {
+  background-color: #98644C;
+  border: none;
+}
+
+.btn-submit:hover {
+  background-color: white;
+  color: #98644C;
+}
+
+.icon-thumbs-up {
+  font-size: 13pt;
+  cursor: pointer;
+}
+
+.name-square {
+  background-color: #98644C;
+  color: white;
+  padding: 1px 5px;
+  min-width: 30px;
+  text-align: center;
+  border-radius: 4px;
+  float: right;
+  margin-top: 13px;
+}
+
+.votes-count {
+  margin: 0;
+  line-height: 10px;
+  font-weight: normal;
+}
+
+.votes-container {
+  display: inline-block;
+}
+
+body {
+  background-color: #D0BDAC !important;
 }
 
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */

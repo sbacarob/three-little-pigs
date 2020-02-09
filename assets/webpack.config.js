@@ -42,6 +42,17 @@ module.exports = (env, options) => ({
             }
           }
         ]
+      },
+      {
+        test: /\.ttf$|\.woff$|\.eot$|\.svg$/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '../fonts'
+            }
+          }
+        ]
       }
     ]
   },
