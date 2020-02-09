@@ -1,6 +1,8 @@
 defmodule ThreeLittlePigs.CardVotes do
   alias ThreeLittlePigs.{CardVote, Repo}
 
+  @topic inspect(__MODULE__)
+
   @doc """
   Create a vote for a card
   """
@@ -8,6 +10,7 @@ defmodule ThreeLittlePigs.CardVotes do
     %CardVote{}
     |> CardVote.changeset(attrs)
     |> Repo.insert()
+    |> broadcast_change([:card_vote, :created])
   end
 
   def get_card_votes_by_author(card_id, author) do
@@ -19,5 +22,16 @@ defmodule ThreeLittlePigs.CardVotes do
   """
   def delete_card_vote(vote) do
     Repo.delete(vote)
+    |> broadcast_change([:card_vote, :deleted])
+  end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(ThreeLittlePigs.PubSub, @topic)
+  end
+
+  defp broadcast_change({:ok, result}, event) do
+    Phoenix.PubSub.broadcast(ThreeLittlePigs.PubSub, @topic, {__MODULE__, event, result})
+
+    {:ok, result}
   end
 end
