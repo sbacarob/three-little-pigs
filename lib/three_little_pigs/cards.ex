@@ -20,6 +20,7 @@ defmodule ThreeLittlePigs.Cards do
   """
   def get_card(id) do
     Repo.get!(Card, id)
+    |> Repo.preload([:card_votes])
   end
 
   @doc """
@@ -47,7 +48,7 @@ defmodule ThreeLittlePigs.Cards do
   def get_cards_by_meeting(meeting_uuid) do
     meeting = ThreeLittlePigs.Meetings.get_meeting_by_uuid(meeting_uuid)
 
-    from(c in Card, where: c.meeting_id == ^meeting.id)
+    from(c in Card, where: c.meeting_id == ^meeting.id, preload: [:card_votes])
     |> Repo.all()
   end
 end

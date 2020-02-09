@@ -14,6 +14,7 @@ defmodule ThreeLittlePigs.Card do
 
     belongs_to :type, ThreeLittlePigs.Type
     belongs_to :meeting, ThreeLittlePigs.Meeting
+    has_many :card_votes, ThreeLittlePigs.CardVote
   end
 
   def changeset(card, attrs) do
