@@ -1,13 +1,16 @@
 defmodule ThreeLittlePigsWeb.MeetingLive do
   use Phoenix.LiveView
 
-  alias ThreeLittlePigs.{Card, Cards, Meetings}
+  alias ThreeLittlePigs.{Card, Cards, CardVotes, Meetings}
 
   def render(assigns) do
     Phoenix.View.render(ThreeLittlePigsWeb.MeetingView, "show.html", assigns)
   end
 
   def mount(%{meeting_uuid: meeting_uuid}, socket) do
+    Cards.subscribe()
+    CardVotes.subscribe()
+
     {
       :ok,
       assign(
@@ -37,6 +40,14 @@ defmodule ThreeLittlePigsWeb.MeetingLive do
   end
 
   def handle_info("update-order", %{assigns: %{meeting_uuid: uuid}} = socket) do
+    {:noreply, assign(socket, cards: get_meeting_cards_by_type(uuid))}
+  end
+
+  def handle_info({Cards, [:card | _], _}, %{assigns: %{meeting_uuid: uuid}} = socket) do
+    {:noreply, assign(socket, cards: get_meeting_cards_by_type(uuid))}
+  end
+
+  def handle_info({CardVotes, [:card_vote | _], _}, %{assigns: %{meeting_uuid: uuid}} = socket) do
     {:noreply, assign(socket, cards: get_meeting_cards_by_type(uuid))}
   end
 
