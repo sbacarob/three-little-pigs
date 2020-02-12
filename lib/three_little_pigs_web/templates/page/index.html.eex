@@ -1,20 +1,13 @@
 <section class="row">
   <article class="column">
-    <h2>Create a meeting</h2>
+    <h1 class="meeting-name">Create a meeting</h1>
     <%= form_for @changeset, Routes.meeting_path(@conn, :create), fn f -> %>
       <label>
-        Name: <%= text_input f, :name %>
+        <%= text_input f, :name, class: "external-form", placeholder: "Name" %>
         <%= error_tag f, :name %>
       </label>
-      <%= submit "Create" %>
+      <%= submit "Create", class: "btn-submit" %>
     <% end %>
-  </article>
-  <article class="column">
-    <h2>Join a meeting</h2>
-    <label>
-      UUID: <input id="meeting-uuid" type="text"></input>
-    </label>
-    <button onclick=joinMeeting()>Join</button>
   </article>
 </section>
 <script type="text/javascript">
