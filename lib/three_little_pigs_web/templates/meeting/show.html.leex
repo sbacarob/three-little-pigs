@@ -22,6 +22,8 @@
       <article class="column cards-col <%= String.split(type.name, " ") |> Enum.reverse() |> hd() %>">
         <div class="col-header">
           <h1><%= type.name %></h1>
+          <span class="info-icon">i</span>
+          <div class="category-description"><%= type.description %></div>
         </div>
         <div class="col-body">
           <ul>

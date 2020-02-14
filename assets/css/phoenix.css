@@ -155,13 +155,43 @@ header nav a {
 }
 
 .col-header{
+  background-color: rgb(231, 220, 196);
   padding: 0;
 }
 
 .col-header h1{
-  background-color: rgb(231, 220, 196);
   color: #623e2c;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-left: 15px;
+}
+
+.info-icon {
+  background-color: #98644C;
+  width: 30px;
+  height: 30px;
   text-align: center;
+  color: white;
+  border-radius: 50%;
+  line-height: 30px;
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
+  font-size: 13pt;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.info-icon:hover + .category-description{
+  display: block;
+}
+
+.category-description {
+  float: right;
+  background: white;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: none;
 }
 
 .col-body{
