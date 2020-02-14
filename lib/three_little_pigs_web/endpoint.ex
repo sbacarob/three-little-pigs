@@ -2,7 +2,7 @@ defmodule ThreeLittlePigsWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :three_little_pigs
 
   socket "/socket", ThreeLittlePigsWeb.UserSocket,
-    websocket: true,
+    websocket: [timeout: 45_000],
     longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket
