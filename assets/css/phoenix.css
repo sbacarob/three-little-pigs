@@ -146,17 +146,17 @@ header nav a {
 }
 
 .row .cards-col{
-  border-left: 1px solid black;
-  border-right: 1px solid black;
   padding: 0;
   margin-left: 2px;
   margin-right: 2px;
   padding-bottom: 400px;
+  border-radius: 10px 10px 0 0;
 }
 
 .col-header{
   background-color: rgb(231, 220, 196);
   padding: 0;
+  border-radius: 10px 10px 0 0;
 }
 
 .col-header h1{
@@ -281,10 +281,6 @@ select.external-form {
 
 .votes-container {
   display: inline-block;
-}
-
-body {
-  background-color: #D0BDAC !important;
 }
 
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */
